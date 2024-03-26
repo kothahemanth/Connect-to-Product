@@ -18,7 +18,7 @@
 		"description": "{{appDescription}}",
 		"dataSources": {
 			"default": {
-				"uri": "https://services.odata.org/TripPinRESTierService/(S(id))/",
+				"uri": "/odata/v4/nnrg/",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "4.0"
@@ -53,6 +53,7 @@
 			"compact": true,
 			"cozy": true
 		},
+		"handleValidation": true,
 		"models": {
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
@@ -70,7 +71,8 @@
 				"settings": {
 					"autoExpandSelect": true,
 					"earlyRequests": true,
-					"operationMode": "Server"
+					"operationMode": "Server",
+					"groupId": "$auto"
 				}
 			}
 		}

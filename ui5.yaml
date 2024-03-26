@@ -11,3 +11,11 @@ framework:
     - name: sap.ui.layout
     - name: sap.ui.core
     - name: themelib_sap_belize
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        backend:
+          - path: /odata
+            url: http://localhost:4004/

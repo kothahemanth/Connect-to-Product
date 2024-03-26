@@ -9,51 +9,43 @@
 				<Page title="{i18n>peoplePageTitle}">
 					<content>
 						<Table
-							id="peopleList"
-							growing="true"
-							growingThreshold="10"
-							items="{
-								path: '/People'
-							}">
+							id="productList" items="{/Product}"
+							>
+
 							<headerToolbar>
 								<OverflowToolbar>
 									<content>
 										<ToolbarSpacer/>
-										<Button
-											id="refreshUsersButton"
-											icon="sap-icon://refresh"
-											tooltip="{i18n>refreshButtonText}"
-											press=".onRefresh"/>
-									</content>
+										
+										</content>
 								</OverflowToolbar>
 							</headerToolbar>
+							
 							<columns>
 								<Column id="userNameColumn">
-									<Text text="{i18n>userNameLabelText}"/>
+									<Text text="product ID"/>
 								</Column>
 								<Column id="firstNameColumn">
-									<Text text="{i18n>firstNameLabelText}"/>
+									<Text text="product name"/>
+								</Column>
+								<Column id="middleNameColumn">
+									<Text text="product Image"/>
 								</Column>
 								<Column id="lastNameColumn">
-									<Text text="{i18n>lastNameLabelText}"/>
+									<Text text="costPrice"/>
 								</Column>
 								<Column id="ageColumn">
-									<Text text="{i18n>ageLabelText}"/>
+									<Text text="sellPrice"/>
 								</Column>
 							</columns>
 							<items>
 								<ColumnListItem>
 									<cells>
-										<Input value="{UserName}"/>
-									</cells>
-									<cells>
-										<Input value="{FirstName}"/>
-									</cells>
-									<cells>
-										<Input value="{LastName}"/>
-									</cells>
-									<cells>
-										<Input value="{Age}"/>
+										<ObjectIdentifier title="{product_id}"/>
+										<Text text="{product_name}"/>
+										<Image src="{product_img}" />
+										<ObjectNumber number = "{product_cost}" />
+										<ObjectNumber number = "{product_sell}" />
 									</cells>
 								</ColumnListItem>
 							</items>
