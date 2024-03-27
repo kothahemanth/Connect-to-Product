@@ -6,17 +6,40 @@
 	<Shell>
 		<App busy="{appView>/busy}" class="sapUiSizeCompact">
 			<pages>
-				<Page title="{i18n>peoplePageTitle}">
+				<Page title="{i18n>peoplePageTitle}" class="customPageStyle">
 					<content>
 						<Table
 							id="productList" items="{/Product}"
-							>
+							mode="SingleSelectLeft">
 
 							<headerToolbar>
 								<OverflowToolbar>
 									<content>
 										<ToolbarSpacer/>
-										
+										<Button
+											id="addUserButton"
+											icon="sap-icon://add"
+											tooltip="{i18n>createButtonText}"
+											press=".onCreate">
+											<layoutData>
+												<OverflowToolbarLayoutData priority="NeverOverflow"/>
+											</layoutData>
+										</Button>
+										<Button
+											id="deleteUserButton"
+											icon="sap-icon://delete"
+											tooltip="{i18n>deleteButtonText}"
+											press=".onDelete">
+											<layoutData>
+												<OverflowToolbarLayoutData priority="NeverOverflow"/>
+											</layoutData>
+										</Button>
+										<Button
+										id="refreshUsersButton"
+										icon="sap-icon://refresh"
+										enabled="{= !${appView>/hasUIChanges}}"
+										tooltip="{i18n>refreshButtonText}"
+										press=".onRefresh"/>
 										</content>
 								</OverflowToolbar>
 							</headerToolbar>
@@ -28,9 +51,7 @@
 								<Column id="firstNameColumn">
 									<Text text="product name"/>
 								</Column>
-								<Column id="middleNameColumn">
-									<Text text="product Image"/>
-								</Column>
+								
 								<Column id="lastNameColumn">
 									<Text text="costPrice"/>
 								</Column>
@@ -41,16 +62,46 @@
 							<items>
 								<ColumnListItem>
 									<cells>
-										<ObjectIdentifier title="{product_id}"/>
-										<Text text="{product_name}"/>
-										<Image src="{product_img}" />
-										<ObjectNumber number = "{product_cost}" />
-										<ObjectNumber number = "{product_sell}" />
+										<Input
+											value="{product_id}"
+											liveChange=".onInputChange"/>
+									</cells>
+									<cells>
+										<Input
+											value="{product_name}"
+											liveChange=".onInputChange"/>
+									</cells>
+									<cells>
+										<Input
+											value="{product_cost}"
+											valueLiveUpdate="true"
+											liveChange=".onInputChange"/>
+									</cells>
+									<cells>
+										<Input
+											value="{product_sell}"
+											valueLiveUpdate="true"
+											liveChange=".onInputChange"/>
 									</cells>
 								</ColumnListItem>
 							</items>
 						</Table>
 					</content>
+					<footer>
+						<Toolbar visible="{appView>/hasUIChanges}">
+							<ToolbarSpacer/>
+							<Button
+								id="saveButton"
+								type="Emphasized"
+								text="{i18n>saveButtonText}"
+								enabled="{= ${message>/}.length === 0 &amp;&amp; ${appView>/usernameEmpty} === false }"
+								press=".onSave"/>
+							<Button
+								id="doneButton"
+								text="{i18n>cancelButtonText}"
+								press=".onResetChanges"/>
+						</Toolbar>
+					</footer>
 				</Page>
 			</pages>
 		</App>
