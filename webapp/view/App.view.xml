@@ -51,7 +51,9 @@
 								<Column id="firstNameColumn">
 									<Text text="product name"/>
 								</Column>
-								
+								<Column id="middleNameColumn">
+									<Text text="product Image"/>
+								</Column>
 								<Column id="lastNameColumn">
 									<Text text="costPrice"/>
 								</Column>
@@ -69,6 +71,12 @@
 									<cells>
 										<Input
 											value="{product_name}"
+											liveChange=".onInputChange"/>
+									</cells>
+									<cells>
+										<Input
+											value="{product_img}"
+											valueLiveUpdate="true"
 											liveChange=".onInputChange"/>
 									</cells>
 									<cells>
